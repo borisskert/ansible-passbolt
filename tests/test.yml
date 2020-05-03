@@ -16,8 +16,7 @@
       http_port: 10080
       https_port: 10443
       interface: 0.0.0.0
-      config_volume: /srv/passbolt/config
-      database_volume: /srv/passbolt/database
+      passbolt_volume: /srv/passbolt
       secret_size: 32
       full_base_path: http://192.168.33.83:10080
       admin_mail: my@fakemail.com

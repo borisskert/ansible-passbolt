@@ -36,9 +36,10 @@ services:
       - DATASOURCES_DEFAULT_DATABASE=passbolt_db
       - APP_FULL_BASE_URL={{full_base_path}}
     volumes:
-      - {{config_volume}}/gpg_volume:/var/www/passbolt/config/gpg
-      - {{config_volume}}/gpg_home:/home/www-data/.gnupg
-      - {{config_volume}}/images_volume:/var/www/passbolt/webroot/img/public
+      - {{config_volume}}:/var/www/passbolt/config/gpg
+      - {{gpg_volume}}:/home/www-data/.gnupg
+      - {{images_volume}}:/var/www/passbolt/webroot/img/public
+      - {{certs_volume}}:/etc/ssl/certs
     tmpfs:
       - /run
       - /tmp

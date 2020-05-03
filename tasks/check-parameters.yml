@@ -1,4 +1,11 @@
 ---
+- name: Check 'passbolt_volume' parameter
+  assert:
+    that:
+      - "passbolt_volume is defined"
+      - "passbolt_volume | length > 0"
+    fail_msg: "parameter 'passbolt_volume' is missing"
+
 - name: Check 'config_volume' parameter
   assert:
     that:
@@ -19,24 +26,3 @@
       - "full_base_path is defined"
       - "full_base_path | length > 0"
     fail_msg: "parameter 'full_base_path' is missing"
-
-- name: Check 'admin_mail' parameter
-  assert:
-    that:
-      - "admin_mail is defined"
-      - "admin_mail | length > 0"
-    fail_msg: "parameter 'admin_mail' is missing"
-
-- name: Check 'admin_name' parameter
-  assert:
-    that:
-      - "admin_name is defined"
-      - "admin_name | length > 0"
-    fail_msg: "parameter 'admin_name' is missing"
-
-- name: Check 'admin_name' parameter
-  assert:
-    that:
-      - "admin_surname is defined"
-      - "admin_surname | length > 0"
-    fail_msg: "parameter 'admin_surname' is missing"

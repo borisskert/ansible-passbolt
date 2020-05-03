@@ -1,11 +1,19 @@
 ---
+- name: create passbolt volume
+  file:
+    path: "{{passbolt_volume}}"
+    state: directory
+    owner: "{{passbolt_user}}"
+    group: "{{passbolt_user}}"
+    mode: 0750
+
 - name: create database volume
   file:
     path: "{{database_volume}}"
     state: directory
     owner: "{{database_user}}"
     group: "{{database_user}}"
-    mode: 0755
+    mode: 0750
 
 - name: create config volume
   file:
@@ -13,27 +21,27 @@
     state: directory
     owner: "{{passbolt_user}}"
     group: "{{passbolt_user}}"
-    mode: 0755
-
-- name: create gpg volume
-  file:
-    path: "{{config_volume}}/gpg_volume"
-    state: directory
-    owner: "{{passbolt_user}}"
-    group: "{{passbolt_user}}"
     mode: 0750
 
 - name: create images volume
   file:
-    path: "{{config_volume}}/images_volume"
+    path: "{{images_volume}}"
     state: directory
     owner: "{{passbolt_user}}"
     group: "{{passbolt_user}}"
     mode: 0750
 
-- name: create gpg home volume
+- name: create gpg volume
   file:
-    path: "{{config_volume}}/gpg_home"
+    path: "{{gpg_volume}}"
+    state: directory
+    owner: "{{passbolt_user}}"
+    group: "{{passbolt_user}}"
+    mode: 0750
+
+- name: create certs volume
+  file:
+    path: "{{certs_volume}}"
     state: directory
     owner: "{{passbolt_user}}"
     group: "{{passbolt_user}}"
