@@ -1,4 +1,6 @@
 ---
 - include: check-parameters.yml
 - include: create-volumes.yml
-- include: generate-database-password.yml
+- include: generate-database-root-password.yml
+- include: generate-database-user-password.yml
+- include: setup-docker-environment.yml

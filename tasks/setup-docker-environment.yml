@@ -1,0 +1,29 @@
+---
+- name: Pull app image
+  docker_image:
+    name: "{{image_name}}:{{image_version}}"
+    source: pull
+  register: dockerimage
+
+- name: Pull database image
+  docker_image:
+    name: "{{db_image_name}}:{{db_image_version}}"
+    source: pull
+  register: db_dockerimage
+
+- name: Create docker working directory
+  file:
+    path: "{{docker_working_directory}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Template docker-compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{docker_compose_path}}"
+    owner: root
+    group: root
+    mode: 0644
+  register: docker_compose_file

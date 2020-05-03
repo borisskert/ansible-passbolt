@@ -1,0 +1,39 @@
+version: '3.2'
+
+# See https://hub.docker.com/r/passbolt/passbolt/
+
+services:
+  db:
+    image: {{db_image_name}}:{{db_image_version}}
+    volumes:
+      - {{database_volume}}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=/run/secrets/database_root_password
+      - MYSQL_DATABASE=passbolt_db
+      - MYSQL_USER=passbolt_user
+      - MYSQL_PASSWORD=/run/secrets/database_user_password
+    secrets:
+      - database_root_password
+      - database_user_password
+
+  app:
+    image: {{image_name}}:{{image_version}}
+    ports:
+      - {{interface}}:{{http_port}}:80
+      - {{interface}}:{{https_port}}:443
+    environment:
+      - DATASOURCES_DEFAULT_HOST=db
+      - DATASOURCES_DEFAULT_PASSWORD=/run/secrets/database_user_password
+      - DATASOURCES_DEFAULT_USERNAME=passbolt_user
+      - DATASOURCES_DEFAULT_DATABASE=passbolt_db
+      - APP_FULL_BASE_URL={{full_base_path}}
+    depends_on:
+      - db
+    secrets:
+      - database_user_password
+
+secrets:
+  database_root_password:
+    file: {{database_root_password_file_path}}
+  database_user_password:
+    file: {{database_user_password_file_path}}

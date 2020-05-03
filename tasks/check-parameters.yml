@@ -12,3 +12,10 @@
       - "database_volume is defined"
       - "database_volume | length > 0"
     fail_msg: "parameter 'database_volume' is missing"
+
+- name: Check 'full_base_path' parameter
+  assert:
+    that:
+      - "full_base_path is defined"
+      - "full_base_path | length > 0"
+    fail_msg: "parameter 'full_base_path' is missing"
