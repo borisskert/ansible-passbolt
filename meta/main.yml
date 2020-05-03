@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: borisskert
+  description: Installation role for passbolt docker container
+  min_ansible_version: 2.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+    - bionic
+    - focal
+  categories:
+  - development
+  - packaging
+  - system
+dependencies: []

@@ -1,0 +1,8 @@
+---
+image_version: latest
+db_image_version: latest
+http_port: 80
+https_port: 443
+config_volume: ''
+database_volume: ''
+secret_size: 16
