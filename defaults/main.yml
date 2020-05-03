@@ -43,3 +43,12 @@ db_container_name: passbolt_db.service
 
 passbolt_user: '33'
 database_user: '999'
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Security properties
+#-----------------------------------------------------------------------------------------------------------------------
+passbold_key_length: 2048
+passbold_subkey_length: 2048
+passbold_key_name: ''
+passbold_key_email: ''

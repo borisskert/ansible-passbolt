@@ -16,11 +16,6 @@ services:
     secrets:
       - database_root_password
       - database_user_password
-    healthcheck:
-        test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-        timeout: 45s
-        interval: 10s
-        retries: 10
 
   passbolt:
     image: {{image_name}}:{{image_version}}
@@ -35,6 +30,18 @@ services:
       - DATASOURCES_DEFAULT_USERNAME=passbolt_user
       - DATASOURCES_DEFAULT_DATABASE=passbolt_db
       - APP_FULL_BASE_URL={{full_base_path}}
+{% if passbold_key_length is defined and passbold_key_length > 0 %}
+      - PASSBOLT_KEY_LENGTH={{passbold_key_length}}
+{% endif %}
+{% if passbold_subkey_length is defined and passbold_subkey_length > 0 %}
+      - PASSBOLT_SUBKEY_LENGTH={{passbold_subkey_length}}
+{% endif %}
+{% if passbold_key_name is defined and passbold_key_name | length > 0 %}
+      - PASSBOLT_KEY_NAME={{passbold_key_name}}
+{% endif %}
+{% if passbold_key_email is defined and passbold_key_email | length > 0 %}
+      - PASSBOLT_KEY_EMAIL={{passbold_key_email}}
+{% endif %}
     volumes:
       - {{config_volume}}:/var/www/passbolt/config/gpg
       - {{gpg_volume}}:/home/www-data/.gnupg
@@ -46,11 +53,6 @@ services:
     command: ["/usr/bin/wait-for.sh", "-t", "0", "db:3306", "--", "/docker-entrypoint.sh"]
     secrets:
       - database_user_password
-    healthcheck:
-        test: [ "CMD", "su" ,"-c", "source /etc/environment; bin/cake passbolt healthcheck", "-s", "/bin/bash", "www-data" ]
-        timeout: 45s
-        interval: 10s
-        retries: 10
 
 secrets:
   database_root_password:
