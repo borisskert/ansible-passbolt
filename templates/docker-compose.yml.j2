@@ -37,6 +37,7 @@ services:
       - APP_FULL_BASE_URL={{full_base_path}}
     volumes:
       - {{config_volume}}/gpg_volume:/var/www/passbolt/config/gpg
+      - {{config_volume}}/gpg_home:/home/www-data/.gnupg
       - {{config_volume}}/images_volume:/var/www/passbolt/webroot/img/public
     tmpfs:
       - /run

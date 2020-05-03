@@ -30,3 +30,11 @@
     owner: "{{passbolt_user}}"
     group: "{{passbolt_user}}"
     mode: 0750
+
+- name: create gpg home volume
+  file:
+    path: "{{config_volume}}/gpg_home"
+    state: directory
+    owner: "{{passbolt_user}}"
+    group: "{{passbolt_user}}"
+    mode: 0750
