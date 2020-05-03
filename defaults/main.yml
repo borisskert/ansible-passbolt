@@ -6,3 +6,6 @@ https_port: 443
 config_volume: ''
 database_volume: ''
 secret_size: 16
+
+
+database_password_file_path: "{{config_volume}}/database_password.txt"

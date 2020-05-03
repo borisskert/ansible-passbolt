@@ -1,2 +1,4 @@
 ---
 - include: check-parameters.yml
+- include: create-volumes.yml
+- include: generate-database-password.yml

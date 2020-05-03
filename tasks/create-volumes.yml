@@ -1,0 +1,16 @@
+---
+- name: create database volume
+  file:
+    path: "{{database_volume}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: create config volume
+  file:
+    path: "{{config_volume}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
