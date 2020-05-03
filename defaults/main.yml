@@ -11,13 +11,14 @@ full_base_path: ''
 #-----------------------------------------------------------------------------------------------------------------------
 config_volume: ''
 database_volume: ''
-docker_working_directory: /opt/passbolt/docker
 
+docker_working_directory: /opt/passbolt/docker
 docker_compose_path: "{{docker_working_directory}}/docker-compose.yml"
 
 database_root_password_file_path: "{{config_volume}}/database_root_password.txt"
 database_user_password_file_path: "{{config_volume}}/database_user_password.txt"
 
+docker_compose_executable: /usr/local/bin/docker-compose
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Docker properties
@@ -26,3 +27,9 @@ image_name: passbolt/passbolt
 image_version: latest
 db_image_name: mariadb
 db_image_version: latest
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Service properties
+#-----------------------------------------------------------------------------------------------------------------------
+service_name: passbolt

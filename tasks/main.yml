@@ -4,3 +4,4 @@
 - include: generate-database-root-password.yml
 - include: generate-database-user-password.yml
 - include: setup-docker-environment.yml
+- include: setup-systemd-service.yml
