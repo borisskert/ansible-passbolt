@@ -1,0 +1,14 @@
+---
+- name: Check 'config_volume' parameter
+  assert:
+    that:
+      - "config_volume is defined"
+      - "config_volume | length > 0"
+    fail_msg: "parameter 'config_volume' is missing"
+
+- name: Check 'database_volume' parameter
+  assert:
+    that:
+      - "database_volume is defined"
+      - "database_volume | length > 0"
+    fail_msg: "parameter 'database_volume' is missing"
