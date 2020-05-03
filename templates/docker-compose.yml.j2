@@ -1,10 +1,11 @@
-version: '3.2'
+version: '3.4'
 
-# See https://hub.docker.com/r/passbolt/passbolt/
+# See https://github.com/passbolt/passbolt_docker/blob/master/docker-compose.yml
 
 services:
   db:
     image: {{db_image_name}}:{{db_image_version}}
+    container_name: {{db_container_name}}
     volumes:
       - {{database_volume}}:/var/lib/mysql
     environment:
@@ -15,9 +16,16 @@ services:
     secrets:
       - database_root_password
       - database_user_password
+    healthcheck:
+        test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+        timeout: 45s
+        interval: 10s
+        retries: 10
 
-  app:
+  passbolt:
     image: {{image_name}}:{{image_version}}
+    container_name: {{container_name}}
+    tty: true
     ports:
       - {{interface}}:{{http_port}}:80
       - {{interface}}:{{https_port}}:443
@@ -27,10 +35,20 @@ services:
       - DATASOURCES_DEFAULT_USERNAME=passbolt_user
       - DATASOURCES_DEFAULT_DATABASE=passbolt_db
       - APP_FULL_BASE_URL={{full_base_path}}
-    depends_on:
-      - db
+    volumes:
+      - {{config_volume}}/gpg_volume:/var/www/passbolt/config/gpg
+      - {{config_volume}}/images_volume:/var/www/passbolt/webroot/img/public
+    tmpfs:
+      - /run
+      - /tmp
+    command: ["/usr/bin/wait-for.sh", "-t", "0", "db:3306", "--", "/docker-entrypoint.sh"]
     secrets:
       - database_user_password
+    healthcheck:
+        test: [ "CMD", "su" ,"-c", "source /etc/environment; bin/cake passbolt healthcheck", "-s", "/bin/bash", "www-data" ]
+        timeout: 45s
+        interval: 10s
+        retries: 10
 
 secrets:
   database_root_password:

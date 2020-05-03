@@ -18,6 +18,8 @@ docker_compose_path: "{{docker_working_directory}}/docker-compose.yml"
 database_root_password_file_path: "{{config_volume}}/database_root_password.txt"
 database_user_password_file_path: "{{config_volume}}/database_user_password.txt"
 
+passbolt_admin_created_path: "{{config_volume}}/admin_created.txt"
+
 docker_compose_executable: /usr/local/bin/docker-compose
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -33,3 +35,8 @@ db_image_version: latest
 # Service properties
 #-----------------------------------------------------------------------------------------------------------------------
 service_name: passbolt
+container_name: passbolt.service
+db_container_name: passbolt_db.service
+
+passbolt_user: '33'
+database_user: '999'

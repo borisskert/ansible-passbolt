@@ -3,14 +3,30 @@
   file:
     path: "{{database_volume}}"
     state: directory
-    owner: root
-    group: root
+    owner: "{{database_user}}"
+    group: "{{database_user}}"
     mode: 0755
 
 - name: create config volume
   file:
     path: "{{config_volume}}"
     state: directory
-    owner: root
-    group: root
+    owner: "{{passbolt_user}}"
+    group: "{{passbolt_user}}"
     mode: 0755
+
+- name: create gpg volume
+  file:
+    path: "{{config_volume}}/gpg_volume"
+    state: directory
+    owner: "{{passbolt_user}}"
+    group: "{{passbolt_user}}"
+    mode: 0750
+
+- name: create images volume
+  file:
+    path: "{{config_volume}}/images_volume"
+    state: directory
+    owner: "{{passbolt_user}}"
+    group: "{{passbolt_user}}"
+    mode: 0750
