@@ -23,3 +23,9 @@
       passbold_subkey_length: 4096
       passbold_key_name: my key name
       passbold_key_email: my@fakemail.com
+      email_from: my@fakemail.com
+      email_host: smtp.fakemail.com
+      email_port: 587
+      email_username: fakeuser
+      email_password: fakepass
+      email_tls: yes

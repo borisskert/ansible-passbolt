@@ -52,3 +52,14 @@ passbold_key_length: 2048
 passbold_subkey_length: 2048
 passbold_key_name: ''
 passbold_key_email: ''
+
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Mail properties
+#-----------------------------------------------------------------------------------------------------------------------
+email_from: ''
+email_host: ''
+email_port: ''
+email_username: ''
+email_password: ''
+email_tls: no

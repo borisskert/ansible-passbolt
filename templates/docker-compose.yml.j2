@@ -42,6 +42,24 @@ services:
 {% if passbold_key_email is defined and passbold_key_email | length > 0 %}
       - PASSBOLT_KEY_EMAIL={{passbold_key_email}}
 {% endif %}
+{% if email_from is defined and email_from | length > 0 %}
+      - EMAIL_DEFAULT_FROM={{email_from}}
+{% endif %}
+{% if email_host is defined and email_host | length > 0 %}
+      - EMAIL_TRANSPORT_DEFAULT_HOST={{email_host}}
+{% endif %}
+{% if email_port is defined and email_port > 0 %}
+      - EMAIL_TRANSPORT_DEFAULT_PORT={{email_port}}
+{% endif %}
+{% if email_username is defined and email_username | length > 0 %}
+      - EMAIL_TRANSPORT_DEFAULT_USERNAME={{email_username}}
+{% endif %}
+{% if email_password is defined and email_password | length > 0 %}
+      - EMAIL_TRANSPORT_DEFAULT_PASSWORD={{email_password}}
+{% endif %}
+{% if email_tls is defined and email_tls | bool %}
+      - EMAIL_TRANSPORT_DEFAULT_TLS=true
+{% endif %}
     volumes:
       - {{config_volume}}:/var/www/passbolt/config/gpg
       - {{gpg_volume}}:/home/www-data/.gnupg
