@@ -29,3 +29,4 @@
       email_username: fakeuser
       email_password: fakepass
       email_tls: yes
+      public_registration: yes

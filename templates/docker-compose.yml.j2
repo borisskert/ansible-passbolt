@@ -60,6 +60,9 @@ services:
 {% if email_tls is defined and email_tls | bool %}
       - EMAIL_TRANSPORT_DEFAULT_TLS=true
 {% endif %}
+{% if public_registration is defined and public_registration | bool %}
+      - PASSBOLT_REGISTRATION_PUBLIC=true
+{% endif %}
     volumes:
       - {{config_volume}}:/var/www/passbolt/config/gpg
       - {{gpg_volume}}:/home/www-data/.gnupg
