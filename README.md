@@ -96,3 +96,13 @@
       email_tls: yes
       public_registration: yes
 ```
+
+## Further links
+
+* [passbolt @ Github](https://github.com/passbolt)
+* [passbolt @ Docker Hub](https://hub.docker.com/r/passbolt/passbolt/)
+* [passbolt_docker @ Github](https://github.com/passbolt/passbolt_docker)
+
+## License
+
+[The MIT License (MIT)](LICENSE.txt)
